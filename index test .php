@@ -17,10 +17,10 @@
     INSERT INTO source VALUES (1, 'src-1');
     INSERT INTO source VALUES (2, 'src-2');
 
-    INSERT INTO article VALUES (1, 1, 'Article 1', 'Lorem ipsum dolor sit amet 1');
-    INSERT INTO article VALUES (2, 2, 'Article 2', 'Lorem ipsum dolor sit amet 2');
-    INSERT INTO article VALUES (3, 2, 'Article 3', 'Lorem ipsum dolor sit amet 3');
-    INSERT INTO article VALUES (4, 1, 'Article 4', 'Lorem ipsum dolor sit amet 4');
+    INSERT INTO article VALUES (1, 1, 'Politique', 'Lorem ipsum dolor sit amet 1', '2024-03-11 00:00:00', 'author1');
+    INSERT INTO article VALUES (2, 2, 'Economie', 'Lorem ipsum dolor sit amet 2', '2024-03-12 00:00:00', 'author2');
+    INSERT INTO article VALUES (3, 2, 'Ecologie', 'Lorem ipsum dolor sit amet 3', '2024-03-17 00:00:00', 'author3');
+    INSERT INTO article VALUES (4, 1, 'Jeu Video', 'Lorem ipsum dolor sit amet 4', '2024-03-19 00:00:00', 'author4');
 */
 
 class ArticleAgregator implements IteratorAggregate
