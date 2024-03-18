@@ -78,22 +78,36 @@ class ArticleAgregator implements IteratorAggregate
         }
     }
 
+    // the file must be json
+    public function appendFile($filePath)
+    {
+        if (!file_exists($filePath)) {
+            throw new Exception("file not found: $filePath");
+        }
+
+        $fileContents = file_get_contents($filePath);
+        if ($fileContents === false) {
+            throw new Exception("error contents : $filePath");
+        }
+
+        $articlesData = json_decode($fileContents, true);
+        if ($articlesData === null) {
+            throw new Exception("is not json valid file : $filePath");
+        }
+
+        foreach ($articlesData as $articleData) {
+            $this->articles[] = (object) $articleData;
+        }
+    }
+
 }
 
 $a = new ArticleAgregator();
 
-/**
- * Récupère les articles de la base de données, avec leur source.
- * host, username, password, database name
- */
-//$a->appendDatabase('localhost:3306', 'root', '', 'florajet_test');
 
-/**
- * Récupère les articles d'un flux rss donné
- * source name, feed url
- */
-
-$a->appendRss('Le Monde',    'http://www.lemonde.fr/rss/une.xml');
+// $a->appendDatabase('localhost:3306', 'root', '', 'florajet_test');
+// $a->appendRss('Le Monde',    'http://www.lemonde.fr/rss/une.xml');
+// $a->appendFile('example.json');
 
 foreach ($a as $article) {
 //    var_dump($article);

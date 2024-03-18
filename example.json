@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Article 1",
+    "sourceName": "Local File",
+    "content": "Contenu de l'article 1..."
+  },
+  {
+    "name": "Article 2",
+    "sourceName": "Local File",
+    "content": "Contenu de l'article 2..."
+  }
+]
