@@ -36,11 +36,17 @@ class ArticleAgregator implements IteratorAggregate
     public function appendDatabase($host, $username, $password, $database)
     {
         $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
-        $stmt = $pdo->query("SELECT * FROM article");
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $stmt = $pdo->query("
+            SELECT t1.id AS article_id, t1.name AS article_name, t1.content, t2.name AS source_name
+            FROM article t1 
+            INNER JOIN source t2 
+            ON t1.source_id = t2.id"
+        );
+
+        while ($row = $stmt->fetch()) {
             $this->articles[] = (object) [
-                'name' => $row['name'],
-                'sourceName' => $row,
+                'name' => $row['article_name'],
+                'sourceName' => $row['source_name'],
                 'content' => $row['content']
             ];
         }
@@ -66,14 +72,14 @@ $a = new ArticleAgregator();
  * Récupère les articles de la base de données, avec leur source.
  * host, username, password, database name
  */
-$a->appendDatabase('localhost:3306', 'root', '', 'florajet_test');
+//$a->appendDatabase('localhost:3306', 'root', '', 'florajet_test');
 
 /**
  * Récupère les articles d'un flux rss donné
  * source name, feed url
  */
 
-//$a->appendRss('Le Monde',    'http://www.lemonde.fr/rss/une.xml');
+$a->appendRss('Le Monde',    'http://www.lemonde.fr/rss/une.xml');
 
 foreach ($a as $article) {
 //    var_dump($article);
