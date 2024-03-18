@@ -105,13 +105,12 @@ class ArticleAgregator implements IteratorAggregate
 
 $a = new ArticleAgregator();
 
-
 // $a->appendDatabase('localhost:3306', 'root', '', 'florajet_test');
-// $a->appendRss('Le Monde',    'http://www.lemonde.fr/rss/une.xml');
+$a->appendRss('Le Monde',    'http://www.lemonde.fr/rss/une.xml');
 // $a->appendFile('example.json');
+// $a->appendRestApi("https://127.0.0.1:8000/api/article");
 
 foreach ($a as $article) {
-//    var_dump($article);
     echo sprintf('<h2>%s</h2><em>%s</em><p>%s</p>',
         $article->name,
         $article->sourceName,
