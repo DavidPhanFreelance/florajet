@@ -100,6 +100,7 @@ class ArticleAgregator implements IteratorAggregate
         }
     }
 
+
 }
 
 $a = new ArticleAgregator();
