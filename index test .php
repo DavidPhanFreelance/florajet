@@ -64,6 +64,20 @@ class ArticleAgregator implements IteratorAggregate
         }
     }
 
+    public function appendRestApi($url)
+    {
+        // Récupération des articles depuis une API REST
+        $response = file_get_contents($url);
+        $data = json_decode($response, true);
+        foreach ($data['articles'] as $article) {
+            $this->articles[] = (object) [
+                'name' => $article['title'],
+                'sourceName' => 'API REST',
+                'content' => $article['content']
+            ];
+        }
+    }
+
 }
 
 $a = new ArticleAgregator();
