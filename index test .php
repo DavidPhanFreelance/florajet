@@ -10,6 +10,8 @@
         id int NOT NULL auto_increment,
         source_id int NOT NULL,
         name varchar(255),
+        date DATETIME,
+        author varchar(255),
         content BLOB,
         PRIMARY KEY(id)
     );
@@ -108,7 +110,7 @@ $a = new ArticleAgregator();
 // $a->appendDatabase('localhost:3306', 'root', '', 'florajet_test');
 $a->appendRss('Le Monde',    'http://www.lemonde.fr/rss/une.xml');
 // $a->appendFile('example.json');
-// $a->appendRestApi("https://127.0.0.1:8000/api/article");
+// $a->appendRestApi("https://127.0.0.1:8000/api/articles");
 
 foreach ($a as $article) {
     echo sprintf('<h2>%s</h2><em>%s</em><p>%s</p>',
