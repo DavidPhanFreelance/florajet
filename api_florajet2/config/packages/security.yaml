@@ -1,0 +1,16 @@
+# config/packages/security.yaml
+
+security:
+  providers:
+    app_user_provider:
+      id: App\Security\UserProvider
+  # ...
+  password_hashers:
+    # Use native password hasher, which auto-selects and migrates the best
+    # possible hashing algorithm (which currently is "bcrypt")
+    Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+  firewalls:
+    main:
+      custom_authenticators:
+        - App\Security\ApiKeyAuthenticator
