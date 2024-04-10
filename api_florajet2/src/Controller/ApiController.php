@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/api/articles', name: 'app_api_articles_')]
@@ -28,7 +30,6 @@ class ApiController extends AbstractController
     }
 
     #[Route('/', name: 'get_all')]
-    #[IsGranted('ROLE_USER')]
     public function index(): JsonResponse
     {
         $articles = $this->entityManager->getRepository(Article::class)->findAll();
@@ -49,6 +50,7 @@ class ApiController extends AbstractController
     }
 
     #[Route('/{id}', name: 'get_by_id')]
+    #[IsGranted('ROLE_USER')]
     public function getArticleById($id): JsonResponse
     {
         $article = $this->articleRepository->find($id);

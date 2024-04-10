@@ -14,3 +14,9 @@ security:
     main:
       custom_authenticators:
         - App\Security\ApiKeyAuthenticator
+      logout:
+        path: api_logout
+        #REDIRECT TO: target:
+#TOKENHANDLER
+#     access_token:
+#        token_handler: App\Security\AccessTokenHandler

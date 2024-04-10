@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\CustomCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
@@ -64,22 +65,18 @@ class ApiKeyAuthenticator extends AbstractAuthenticator
             throw new CustomUserMessageAuthenticationException('User not found.');
         }
 
-        return new Passport(new UserBadge($user->getUsername()), new PasswordCredentials($credentials, null));
+        return new Passport(new UserBadge($user->getUsername()), new RememberMeBadge());
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        dd("success");
         // on success, let the request continue
         return null;
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-//        var_dump($exception->getMessageKey());
-        $authorizationHeader = $request->headers->get('Authorization');
-        dd($request->headers->get('Authorization'));
-
+        //debug: $authorizationHeader = $request->headers->get('Authorization');
 
         $data = [
             'message' => strtr($exception->getMessageKey(), $exception->getMessageData())

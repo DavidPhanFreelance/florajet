@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AuthController extends AbstractController
 {
@@ -53,13 +54,15 @@ class AuthController extends AbstractController
             return $this->json(['token' => $token]);
         }
 
-        return $this->json(['message' => 'Invalid credentials'], Response::HTTP_UNAUTHORIZED);
+        return $this->json(['message' => 'Invalid credentials (login)'], Response::HTTP_UNAUTHORIZED);
     }
 
     #[Route('/api/logout', name: 'api_logout', methods: ['POST'])]
-    public function logout(): void
+    public function logout(AuthenticationUtils $authenticationUtils): Response
     {
-        // logique de déco
+        // todo: clean session, tokens etc...
+
+        return new Response('', Response::HTTP_OK);
     }
 
 }
