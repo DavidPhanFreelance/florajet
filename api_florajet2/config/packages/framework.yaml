@@ -4,7 +4,22 @@ framework:
     #csrf_protection: true
 
     # Note that the session will be started ONLY if you read or write from it.
-    session: true
+    session:
+
+        handler_id: 'session.handler.native_file'
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+        # ID of the service used for session storage
+        # NULL means that Symfony uses PHP default session mechanism
+
+        cookie_secure: auto
+        cookie_samesite: lax
+        storage_factory_id: session.storage.factory.native
+
+    cache:
+        app: cache.adapter.redis
+        default_redis_provider: redis://localhost
+
+    profiler: { only_exceptions: false }
 
     #esi: true
     #fragments: true
