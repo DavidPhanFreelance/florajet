@@ -19,16 +19,5 @@ Elles seront couplé a l'entité User qui contient un champs token qui est garan
 
 Toute l'architecture est implémenté a part le /logout.
 
-Malheureusement je n'ai pas réussi à aller jusqu'au bout.
-
-J'ai ajouté une permission ROLE_USER sur la methode GET /articles
-et mon ApiKeyAuthenticator je passe a chaque fois dans le onAuthenticationFailure.
-Alors que Le token est bien généré, je recupère bien le User à partir du token, et le mot de passe correspond.
-Le Passport retourné dans la méthode authenticate() me semble OK.
-Je n'ai pas réussi à trouver le problème.
-J'ai un Invalid Credentials quand j'essaie d'accéder a GET /articles
-
 Je n'ai pas mis de permission sur les autres routes pour qu'elles puissent être testé.
 J'ai laissé quelques messages d'erreurs pour qu'on puisse revenir sur certains points.
-
-J'ai mis a peu près 6h - 8h pour faire le projet.
