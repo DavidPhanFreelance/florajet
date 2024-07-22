@@ -1,0 +1,13 @@
+Enoncé :
+ 
+Le but est de développer autour de la classe ArticleAggregator (ci-joint) un projet qui l’utilise afin de récupérer des articles depuis différentes sources telles que des bases de données, des flux RSS.
+ 
+Tâches supplémentaires en fonction du temps disponible :
+ 
+
+    Implémenter la fonctionnalité permettant de récupérer des articles à partir de sources de données externes telles que des API REST et des fichiers locaux.
+    Mise disposition d’un API REST mettant à disposition les articles, les sources, les auteurs etc.
+    Y ajouter la possibilité de filtrer les articles en fonction de critères tels que la date de publication, le sujet, la source, l'auteur etc.
+    Ajouter la prise en charge de l'authentification pour les sources de données qui le nécessitent.
+    Intégrer un système de cache afin de limiter des requêtes répétitives vers les mêmes sources de données.
+    Optimiser les performances de la classe pour gérer efficacement de grandes quantités d'articles provenant de différentes sources.
