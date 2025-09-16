@@ -15,7 +15,7 @@ security:
       custom_authenticators:
         - App\Security\ApiKeyAuthenticator
       logout:
-        path: api_logout
+        path: app_logout
 #      custom_authenticator: App\Security\AppCustomAuthenticator
       remember_me:
         secret: '%kernel.secret%'

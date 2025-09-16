@@ -48,6 +48,7 @@ class ApiKeyAuthenticator extends AbstractAuthenticator
 
     public function authenticate(Request $request): Passport
     {
+        // le début de la connection, récupération de la clé dans Request, création du Passport
         $authorizationHeader = $request->headers->get('Authorization');
         $credentials = null;
 
@@ -76,8 +77,6 @@ class ApiKeyAuthenticator extends AbstractAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        //debug: $authorizationHeader = $request->headers->get('Authorization');
-
         $data = [
             'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
         ];
